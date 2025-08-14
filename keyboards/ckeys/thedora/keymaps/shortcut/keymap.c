@@ -40,10 +40,11 @@
 
 enum layers {
     _BASE,   // base layer
-    _MUSIC,  // music mode
-    _MIDI,   // midi mode
-    _MOUSE,  // mouse keys
-    _ADMIN   // admin duties
+    _BLENDER,
+    _FUSION,
+    _FREECADPRIMARY,
+    _FREECADSECONDARY,
+    _GOOGLE 
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -90,10 +91,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
 
     [_BASE] = LAYOUT(
-                KC_P7,    KC_P8  , KC_P9  , KC_PSLS, MO(_ADMIN),
-                KC_P4,    KC_P5  , KC_P6  , KC_PAST, TG(_MOUSE),
-                KC_P1,    KC_P2  , KC_P3  , KC_PMNS, TG(_MIDI),
-        MU_TOGG,KC_P0,    KC_PDOT, KC_PEQL, KC_PPLS, MO(_MUSIC)
+                TG(_GOOGLE), KC_NO, KC_NO, KC_NO, KC_NO,
+                TG(_FREECADPRIMARY), KC_NO, KC_NO, KC_NO, KC_NO,
+                TG(_FUSION), KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO ,TG(_BLENDER), KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
     // MUSIC LAYER
@@ -115,11 +116,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // │         │         │         │         │         │         │
     // └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
 
-    [_MUSIC] = LAYOUT(
-                 _______, _______, _______, _______, _______,
-                 _______, _______, _______, _______, _______,
-                 _______, _______, _______, _______, MU_NEXT,
-        _______, KC_LCTL, KC_LALT, _______, KC_LGUI, _______
+    [_BLENDER] = LAYOUT(
+                 TG(_GOOGLE), QK_MOUSE_ACCELERATION_1, QK_MOUSE_ACCELERATION_2, KC_NO, KC_NO,
+                TG(_FREECADPRIMARY), LSFT(KC_KP_4), LCTL(KC_KP_6), KC_NO, KC_NO,
+                TG(_FUSION), LCTL(KC_KP_8), LCTL(KC_KP_2), KC_NO, KC_NO,
+        KC_NO ,TG(_BLENDER), LSFT(KC_KP_6), LCTL(KC_KP_4), KC_NO, KC_NO
     ),
 
     // MIDI LAYER
@@ -141,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // │         │         │         │         │         │         │
     // └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
 
-    [_MIDI] = LAYOUT(
-                 MI_Ds3, MI_E3,  MI_F3,  MI_Fs3, MI_G3,
-                 MI_As2, MI_B2,  MI_C3,  MI_Cs3, MI_D3,
-                 MI_F2,  MI_Fs2, MI_G2,  MI_Gs2, TG(_MIDI),
-        _______, MI_C2,  MI_Cs2, MI_D2,  MI_Ds2, MI_E2
+    [_FUSION] = LAYOUT(
+                TG(_GOOGLE), KC_NO, KC_NO, KC_NO, KC_NO,
+                TG(_FREECADPRIMARY), KC_NO, KC_NO, KC_NO, KC_NO,
+                TG(_FUSION), KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO ,TG(_BLENDER), KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
     // MOUSE LAYER
@@ -167,11 +168,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // │         │         │  LEFT   │  DOWN   │  RIGHT  │         │
     // └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
 
-    [_MOUSE] = LAYOUT(
-                 KC_BTN5, _______, KC_WH_U, _______, _______,
-                 _______, KC_BTN1, KC_MS_U, KC_BTN2, TG(_MOUSE),
-                 KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, _______,
-        _______, KC_BTN3, KC_WH_L, KC_WH_D, KC_WH_R, _______
+    [_FREECADPRIMARY] = LAYOUT(
+                 TG(_GOOGLE), KC_NO, KC_NO, KC_NO, KC_NO,
+                TG(_FREECADPRIMARY), LCS(KC_RIGHT), KC_NO, KC_NO, KC_NO,
+                TG(_FUSION), LCS(KC_UP), LCTL(KC_EQUAL), LCS(KC_DOWN), KC_NO,
+        KC_NO ,TG(_BLENDER), KC_NO, LCS(KC_LEFT), KC_NO, MO(_FREECADSECONDARY)
+    ),
+    [_FREECADSECONDARY] = LAYOUT(
+                 TG(_GOOGLE), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                TG(_FREECADPRIMARY), KC_TRNS, KC_RIGHT, KC_TRNS, KC_TRNS,
+                TG(_FUSION), KC_UP, LCTL(KC_MINUS), KC_DOWN, KC_TRNS,
+        KC_NO ,TG(_BLENDER), KC_TRNS, KC_LEFT, KC_TRNS, KC_TRNS
     ),
 
     // ADMIN LAYER
@@ -193,11 +200,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // │         │         │         │         │         │         │
     // └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
 
-    [_ADMIN] = LAYOUT(
-                 QK_BOOT, _______, _______, _______, TG(_ADMIN),
-                 _______, _______, _______, _______, _______,
-                 _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______
+    [_GOOGLE] = LAYOUT(
+                 TG(_GOOGLE), LCTL(KC_TAB), KC_NO, KC_NO, KC_NO,
+                TG(_FREECADPRIMARY), LGUI(KC_RIGHT_BRACKET), KC_NO, KC_NO, KC_NO,
+                TG(_FUSION), LGUI(KC_LEFT_BRACKET), KC_NO, KC_NO, KC_NO,
+        KC_NO ,TG(_BLENDER), LCS(KC_TAB), KC_NO, KC_NO, KC_NO
     ),
 };
 
