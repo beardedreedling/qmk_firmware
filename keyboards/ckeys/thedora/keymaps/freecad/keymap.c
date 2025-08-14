@@ -312,9 +312,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { /* First encoder */
         if (clockwise) {
-            tap_code(KC_VOLU);  // Volume up
+            tap_code(KC_AUDIO_VOL_UP);  // macOS volume up
         } else {
-            tap_code(KC_VOLD);  // Volume down
+            tap_code(KC_AUDIO_VOL_DOWN);  // macOS volume down
         }
     }
     return true;
