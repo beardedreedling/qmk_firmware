@@ -16,7 +16,7 @@
 
 #pragma once
 
-#define AUDIO_CLICKY
+// #define AUDIO_CLICKY
 
 #define DAC_SAMPLE_MAX 65535U
 
